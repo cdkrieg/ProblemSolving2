@@ -94,3 +94,20 @@ function checkForSequence(listOfNumbers){
 let listOfNumbers = [5,7,3,11,9,1,13];
 let isSequence = checkForSequence(listOfNumbers);
 alert(`Is the array of numbers a sequence: ${isSequence}`);
+
+//Process an array of positive and negative numbers
+function processArray(array){
+    let count = 0;
+    let negativeSum = 0;
+    for(let i = 0; i < array.length; i++){
+        if(parseInt(array[i]) > 0){
+            count++;
+        } else if(parseInt(array[i]) < 0){
+            negativeSum += parseInt(array[i]);
+        }
+    }
+    return [count,negativeSum];
+}
+let arrayOfInts = [7,9,-3,-32,107,-1,36,95,-14,-99,21];
+let processedArray = processArray(arrayOfInts);
+alert(processedArray);
