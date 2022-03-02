@@ -36,16 +36,19 @@
 let prime = "Prime Number";
 let notPrime = "Non-Prime Number"
 function checkIfNumberPrime(number){
-    if(number === 1 || number === 3 || number === 5){
+    if(number > 1 && (number === 2 || number === 3 )){
         return prime;
-    } else {
-        for(let i = 0; 6*i+1 < number ; i++){
-            if(number === (6*i+1) || number === (6*i-1)){
-                return prime;
-            }
-        }
+    } else if(number%2 === 0 || number%3 === 0 || number%5 === 0){
+        return notPrime
+    } else if(number <= 1){
         return notPrime;
     }
+    for(let i = 7; i<number;i++){
+        if(number%i === 0){
+            return notPrime
+        }
+    } 
+    return prime;
 }
 let userInput = checkIfNumberPrime(prompt("Enter a number to check if prime"));
 alert(userInput);
