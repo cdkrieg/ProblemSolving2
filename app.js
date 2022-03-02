@@ -111,3 +111,21 @@ function processArray(array){
 let arrayOfInts = [7,9,-3,-32,107,-1,36,95,-14,-99,21];
 let processedArray = processArray(arrayOfInts);
 alert(processedArray);
+
+//Highest and lowest number in a string of numbers
+function highestLowest(string){
+    let highest = "0";
+    let lowest = "0";
+    let splitString = string.split(" ");
+    for(let i = 0; i < splitString.length; i++){
+        if(parseInt(splitString[i]) > parseInt(highest)){
+            highest = splitString[i];
+        }
+        if(parseInt(splitString[i]) < parseInt(lowest)){
+            lowest = splitString[i];
+        }
+    }
+    return lowest + " " + highest;
+}
+let highestLowestNumberInString = highestLowest("3 9 0 4 8 10 2");
+alert(highestLowestNumberInString);
