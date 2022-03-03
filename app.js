@@ -130,29 +130,57 @@
 // let highestLowestNumberInString = highestLowest("3 9 0 4 8 10 2");
 // alert(highestLowestNumberInString);
 
-//Validate email address
-function validateEmailAddress(string){
-    if(string.includes("@")){
-        let emailArray = string.split('@');
-        if(emailArray[1].includes(".")){
-            return true
+// //Validate email address
+// function validateEmailAddress(string){
+//     if(string.includes("@")){
+//         let emailArray = string.split('@');
+//         if(emailArray[1].includes(".")){
+//             return true
+//         }
+//     } else {
+//         return false;
+//     }
+// }
+// function getEmailAddress(){
+//     let emailAddress = prompt("enter your email address");
+//     let isEmailValid = validateEmailAddress(emailAddress);
+//     while(!isEmailValid){
+//         emailAddress = prompt("You have entered an invalid email address! Please re-enter your email address");
+//         isEmailValid = validateEmailAddress(emailAddress);
+//         if(emailAddress === null){
+//             return;
+//         }
+//     }
+//     alert("Thank you!")
+//     return
+// }
+// getEmailAddress();
+
+//replace each letter in string with alphabet position
+function replaceLetterWithAlphabetPosition(string){
+    let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    let alphabetPositionString = [];
+    for(let i = 0; i < string.length; i++){
+        if(!alphabet.includes(string[i])){
+            continue;
+        }else {
+  Inner:    for(let index = 0; index < alphabet.length; index++){
+                if(string[i] === alphabet[index]){
+                    alphabetPositionString.push((index + 1) + " ");
+                    break Inner;
+                }
+            }
         }
-    } else {
-        return false;
     }
-}
-function getEmailAddress(){
-    let emailAddress = prompt("enter your email address");
-    let isEmailValid = validateEmailAddress(emailAddress);
-    while(!isEmailValid){
-        emailAddress = prompt("You have entered an invalid email address! Please re-enter your email address");
-        isEmailValid = validateEmailAddress(emailAddress);
-        if(emailAddress === null){
-            return;
-        }
+    let newString = "";
+    for(let i = 0 ; i < alphabetPositionString.length; i++){
+        newString += alphabetPositionString[i];
     }
-    alert("Thank you!")
-    return
+    newString = newString.trimEnd();
+    return newString;
 }
-getEmailAddress();
+let userStringAlphabet = prompt("Please enter a string");
+let stringWithAlphabetPositions = replaceLetterWithAlphabetPosition(userStringAlphabet);
+alert(`The alphabet positions of your string are: ${stringWithAlphabetPositions}`);
+
 
