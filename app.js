@@ -159,6 +159,7 @@ getEmailAddress();
 //replace each letter in string with alphabet position
 function replaceLetterWithAlphabetPosition(string){
     let alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    string = string.toLowerCase();
     let alphabetPositionString = [];
     for(let i = 0; i < string.length; i++){
         if(!alphabet.includes(string[i])){
@@ -183,29 +184,44 @@ let userStringAlphabet = prompt("Please enter a string");
 let stringWithAlphabetPositions = replaceLetterWithAlphabetPosition(userStringAlphabet);
 alert(`The alphabet positions of your string are: ${stringWithAlphabetPositions}`);
 
-//NOT FINISHED
-// //Briefcase with 4-digit lock (smallest number of turns to move numbers from current value to target value)
-// function smallestNumberOfTurns(numberOne,numberTwo){
-//     let numberDial = [0,1,2,3,4,5,6,7,8,9];
-//     numberOne = numberOne.toString().split("");
-//     numberTwo = numberTwo.toString().split("");
-//     let numberOfturns = 0;
-//     let numberOfTotalTurns = 0;
-//     for(let i = 0; i < numberOne.length; i++){
-//         for(let index = 0; index < numberDial.length; index++{
-//             if(numberOne[i] === numberDial[index]){
-                
 
-//                 }
-//             }
-//         }
-//     }
-// }
-// let currentLockSetting = 3893;
-// let targetLockSetting = 5296;
-// //smallestNumberOfTurns(currentLockSetting,targetLockSetting);
-// let numberOfTurns = smallestNumberOfTurns(currentLockSetting,targetLockSetting);
-// alert(`Thsi smallest number of turns to change the lock to the target setting is ${numberOfTurns}`);
+//Briefcase with 4-digit lock (smallest number of turns to move numbers from current value to target value)
+function smallestNumberOfTurns(numberOne,numberTwo){
+    numberOne = numberOne.toString().split("");
+    numberTwo = numberTwo.toString().split("");
+    let baseNumber = 0;
+    let downNumber = 0;
+    let upNumber = 0;
+    let numberOfTotalTurns = 0;
+    for(let i = 0; i < numberOne.length; i++){
+       baseNumber = parseInt(numberOne[i]) + 10;
+       if(parseInt(numberOne[i]) > parseInt(numberTwo[i])){
+            downNumber = baseNumber - (parseInt(numberTwo[i]) + 10);
+            upNumber = (parseInt(numberTwo[i]) + 20) - baseNumber;
+            if(downNumber > upNumber){
+                numberOfTotalTurns += upNumber;
+            } else {
+                numberOfTotalTurns += downNumber;
+            }
+            continue;
+        } else {
+            downNumber = baseNumber - parseInt(numberTwo[i]);
+            upNumber = (parseInt(numberTwo[i]) + 10) - baseNumber;
+            if(downNumber > upNumber){
+                numberOfTotalTurns += upNumber;
+            } else {
+                numberOfTotalTurns += downNumber;
+            }
+            continue;
+        }
+    }
+    return numberOfTotalTurns;
+}
+let currentLockSetting = 3893;
+let targetLockSetting = 5296;
+//smallestNumberOfTurns(currentLockSetting,targetLockSetting);
+let numberOfTurns = smallestNumberOfTurns(currentLockSetting,targetLockSetting);
+alert(`Thsi smallest number of turns to change the lock to the target setting is ${numberOfTurns}`);
 
 
 //return the reciprocal of the reverse of a given number
@@ -221,3 +237,4 @@ function reciprocalOfReverse(number){
 let number = 17;
 let reverseReciprocal = reciprocalOfReverse(number);
 alert(reverseReciprocal);
+
